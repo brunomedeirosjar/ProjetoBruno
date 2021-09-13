@@ -1,0 +1,16 @@
+Sistema de chamados:
+	http://10.0.3.160/otrs/index.pl
+ 
+	bruno.medeiros
+	123456
+ 
+Bitbuckt sistema onde estão os projetos:
+	http://10.0.0.18:7990/dashboard
+	
+	bruno.medeiros
+	Praia@2021
+	
+Senha para conectar na vpn/windows:
+
+	bruno.medeiros
+	Praia@2020 

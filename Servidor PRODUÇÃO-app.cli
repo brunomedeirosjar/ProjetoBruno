@@ -1,0 +1,71 @@
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+PRODUÇÃO
+Comandos servidor API PRODUÇão
+
+		--Pasta app
+		/var/apps/api-aplicativo
+
+		-- credenciais
+			10.0.0.253
+			root
+			lS3cur!tty
+
+		--Comandos do serviço
+			service sgc-api start
+			service sgc-api stop
+			
+		-- Dar permissao ao colocar jar novo
+			cd ..
+			 cd /var/apps/api-aplicativo
+			 sudo chmod 777 sgc-api.jar
+			 
+			 
+https://esitef-ec.softwareexpress.com.br/
+praiaclube
+Praia@2019
+
+http://10.0.0.222:9000/#/containers
+Usuario: admin
+senha:   Praia@clube

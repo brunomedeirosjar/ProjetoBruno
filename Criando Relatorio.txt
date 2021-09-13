@@ -1,0 +1,139 @@
+1º-
+frontend\src\main\webapp\WEB-INF\faces-config.xml
+Linha 1275
+
+	<navigation-case>
+	<from-outcome>detailOfCanceledMembersReport</from-outcome>
+			<to-view-id>/pages/reports/detailOfAdmittedBySituationReport.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+2º-
+frontend\src\main\webapp\WEB-INF\securityContext.xml
+linha 227	
+
+<intercept-url pattern="/pages/reports/detailOfAdmittedBySituationReport.jsf" access="hasRole('SGC_DETAIL_OF_ADMITTED_BY_SITUATION_REPORT')" />
+
+3º-
+frontend\src\main\webapp\WEB-INF\template\header.xml
+visibleInRoles= colocar SGC_DETAIL_OF_ADMITTED_BY_SITUATION_REPORT
+Linha 861
+
+<li><h:commandLink value="Detalhado de Admitidos Por Situação"
+														   action="detailOfAdmittedBySituationReport">
+											<ns:security visibleInRoles="SGC_DETAIL_OF_ADMITTED_BY_SITUATION_REPORT" />
+										</h:commandLink></li>
+
+4º-
+Cria um novo
++/***************************************************************
+**************** Permissão Relatório Detalhado Admitidos Por Situação****************
+***************************************************************/
+INSERT INTO tpermission(id, description, name, parent, private_item)
+VALUES (nextval('SEQ_PERMISSION'), 'Relatório Detalhado Admitidos Por Situação', 'SGC_DETAIL_OF_ADMITTED_BY_SITUATION_REPORT', (select id from tpermission where name = 'SGC_REPORTS'), false)
+
+5º- criar
+
+frontend\src\main\java\br\inf\newsolutions\sgc\web\report\DetailOfAdmittedBySituationReportBean.java
+
+package br.inf.newsolutions.sgc.web.report;
+
+import br.inf.newsolutions.sgc.api.domain.*;
+
+import br.inf.newsolutions.sgc.api.search.SearchOptionsCommon;
+import br.inf.newsolutions.sgc.api.service.DependentService;
+import br.inf.newsolutions.sgc.api.service.HolderService;
+import org.springframework.context.annotation.Scope;
+import org.sunframework.core.api.exception.ValidationException;
+import org.sunframework.core.service.PersistenceService;
+import org.sunframework.core.util.DateHelper;
+import org.sunframework.faces.controller.SearchFieldController;
+import org.sunframework.faces.report.BasicReportBean;
+
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+@Named
+@Scope("view")
+public class DetailOfAdmittedBySituationReportBean extends BasicReportBean {
+
+
+	private static final long serialVersionUID = -3746336936548792140L;
+
+	public DetailOfAdmittedBySituationReportBean(String reportName) {
+		super(reportName);
+	}
+
+
+	@Override
+	protected void validate() throws ValidationException {
+
+	}
+}
+
+
+6º- criar
+frontend\src\main\webapp\pages\reports\detailOfAdmittedBySituationReport.xhtml,
+Cria
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:ns="http://www.sunframework.org/faces"
+                template="/WEB-INF/template/report.xhtml">
+
+    <ui:define name="javascript">
+        <h:outputScript name="datetimepicker/bootstrap-datepicker.js"
+                        library="org.sunframework.faces/js/lib"/>
+        <h:outputScript name="datetimepicker/bootstrap-timepicker.js"
+                        library="org.sunframework.faces/js/lib"/>
+        <h:outputScript
+                name="datetimepicker/locales/bootstrap-datepicker.pt-BR.js"
+                library="org.sunframework.faces/js/lib"/>
+        <h:outputScript name="ns-datetimepicker.js"
+                        library="org.sunframework.faces/js"/>
+        <h:outputScript name="selectize.min.js"
+                        library="org.sunframework.faces/js/lib"/>
+    </ui:define>
+
+    <ui:define name="css">
+        <h:outputStylesheet name="datetimepicker/bootstrap-datepicker.css"
+                            library="org.sunframework.faces/css/lib"/>
+        <h:outputStylesheet name="datetimepicker/bootstrap-timepicker.css"
+                            library="org.sunframework.faces/css/lib"/>
+        <h:outputStylesheet name="selectize.bootstrap3.css"
+                            library="org.sunframework.faces/css/lib"/>
+    </ui:define>
+
+    <ui:param name="title" value="Relatório Detalhado de Cancelamento de Sócio"/>
+    <ui:param name="domain" value="detalhado de cancelamento de sócio"/>
+    <ui:param name="managedBeanName" value="#{detailOfCanceledMembersReportBean}"/>
+    <ui:param name="formId" value="frmDetailOfCanceledMembersReport"/>
+    <ui:param name="permission" value="SGC_DETAIL_OF_CANCELED_MEMBERS_REPORT"/>
+</ui:composition>
+
+7º- Depende de cada relatorio
+Criando componentes - Pegar relatorio mas proximo
+
+8º-
+Criação do jrxml frontend\src\main\resources\reports\detailOfAdmittedBySituation
+
+ e jasper 		 frontend\src\main\resources\reports\detailOfAdmittedBySituation
+
+9- 
+Montar Layout do Jaspersoft IReport e Montar QUERY
+
+
+10- 
+Definir parementros no Been

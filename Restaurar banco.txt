@@ -1,0 +1,20 @@
+=============Passos para configurar/restaurar banco de dados SGC =========
+senha:postgres
+
+Passo 1: caso o banco esteja acabado de ser instalado criar role SGC caso esteja restaurando va para PASSO 2
+CREATE ROLE sgc WITH
+  LOGIN
+  SUPERUSER
+  INHERIT
+  CREATEDB
+  CREATEROLE
+  NOREPLICATION
+  ENCRYPTED PASSWORD 'md53b07c60d80ddb6d25fbddaefbb502bea';
+
+Passo 2: Caso esteja configurando um novo banco criar banco com nome sgc, caso esteja restaurando apagar banco sgc e criar de novo
+
+Passo 3: baixar backup e restaurar
+
+Passo 4: Rasurar banco para nao enviar email. O script esta la no Bitbuckt no
+ repositorio praiaclube-files, na pasta sql/dev, abrir arquivo e pegar a parte do sgc
+ 
