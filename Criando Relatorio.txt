@@ -1,40 +1,44 @@
 1º-
 frontend\src\main\webapp\WEB-INF\faces-config.xml
-Linha 1275
+Linha 1275Relato
 
 	<navigation-case>
-	<from-outcome>detailOfCanceledMembersReport</from-outcome>
-			<to-view-id>/pages/reports/detailOfAdmittedBySituationReport.xhtml</to-view-id>
+	<from-outcome>detailedOpenFitnessSchedulingReport</from-outcome>
+			<to-view-id>/pages/reports/detailedOpenFitnessSchedulingReport.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 
+
+
+
+detailedOpenFitnessSchedulingReport
 2º-
 frontend\src\main\webapp\WEB-INF\securityContext.xml
 linha 227	
 
-<intercept-url pattern="/pages/reports/detailOfAdmittedBySituationReport.jsf" access="hasRole('SGC_DETAIL_OF_ADMITTED_BY_SITUATION_REPORT')" />
+<intercept-url pattern="/pages/reports/detailedOpenFitnessSchedulingReport.jsf" access="hasRole('SGC_DETAILED_OPEN_FITNESS_SCHEDULING_REPORT')" />
 
 3º-
 frontend\src\main\webapp\WEB-INF\template\header.xml
-visibleInRoles= colocar SGC_DETAIL_OF_ADMITTED_BY_SITUATION_REPORT
+visibleInRoles = colocar SGC_DETAILED_OPEN_FITNESS_SCHEDULING_REPORT
 Linha 861
 
-<li><h:commandLink value="Detalhado de Admitidos Por Situação"
-														   action="detailOfAdmittedBySituationReport">
-											<ns:security visibleInRoles="SGC_DETAIL_OF_ADMITTED_BY_SITUATION_REPORT" />
+<li><h:commandLink value="Detalhado de Agendamento Open Fitness"
+														   action="detailedOpenFitnessSchedulingReport">
+											<ns:security visibleInRoles="SGC_DETAILED_OPEN_FITNESS_SCHEDULING_REPORT" />
 										</h:commandLink></li>
 
 4º-
 Cria um novo
 +/***************************************************************
-**************** Permissão Relatório Detalhado Admitidos Por Situação****************
+**************** Permissão Relatório Detalhado de Agendamento Open Fitness****************
 ***************************************************************/
 INSERT INTO tpermission(id, description, name, parent, private_item)
-VALUES (nextval('SEQ_PERMISSION'), 'Relatório Detalhado Admitidos Por Situação', 'SGC_DETAIL_OF_ADMITTED_BY_SITUATION_REPORT', (select id from tpermission where name = 'SGC_REPORTS'), false)
+VALUES (nextval('SEQ_PERMISSION'), 'Relatório Detalhado de Agendamento Open Fitness', 'SGC_DETAILED_OPEN_FITNESS_SCHEDULING_REPORT', (select id from tpermission where name = 'SGC_REPORTS'), false)
 
 5º- criar
 
-frontend\src\main\java\br\inf\newsolutions\sgc\web\report\DetailOfAdmittedBySituationReportBean.java
+frontend\src\main\java\br\inf\newsolutions\sgc\web\report\DetailedOpenFitnessSchedulingReportBean.java
 
 package br.inf.newsolutions.sgc.web.report;
 
@@ -62,12 +66,12 @@ import java.util.Map;
 
 @Named
 @Scope("view")
-public class DetailOfAdmittedBySituationReportBean extends BasicReportBean {
+public class cc extends BasicReportBean {
 
 
 	private static final long serialVersionUID = -3746336936548792140L;
 
-	public DetailOfAdmittedBySituationReportBean(String reportName) {
+	public DetailedOpenFitnessSchedulingReportBean(String reportName) {
 		super(reportName);
 	}
 
@@ -80,7 +84,7 @@ public class DetailOfAdmittedBySituationReportBean extends BasicReportBean {
 
 
 6º- criar
-frontend\src\main\webapp\pages\reports\detailOfAdmittedBySituationReport.xhtml,
+frontend\src\main\webapp\pages\reports\detailedOpenFitnessSchedulingReportBean.xhtml,
 Cria
 
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -116,11 +120,11 @@ Cria
                             library="org.sunframework.faces/css/lib"/>
     </ui:define>
 
-    <ui:param name="title" value="Relatório Detalhado de Cancelamento de Sócio"/>
-    <ui:param name="domain" value="detalhado de cancelamento de sócio"/>
-    <ui:param name="managedBeanName" value="#{detailOfCanceledMembersReportBean}"/>
-    <ui:param name="formId" value="frmDetailOfCanceledMembersReport"/>
-    <ui:param name="permission" value="SGC_DETAIL_OF_CANCELED_MEMBERS_REPORT"/>
+    <ui:param name="title" value="Relatório Detalhado de Agendamento Open Fitness"/>
+    <ui:param name="domain" value="detalhado de agendamento open fitness"/>
+    <ui:param name="managedBeanName" value="#{detailedOpenFitnessSchedulingReportBean}"/>
+    <ui:param name="formId" value="frmDetailedOpenFitnessSchedulingReport"/>
+    <ui:param name="permission" value="DETAILED_OPEN_FITNESS_SCHEDULING_REPORT"/>
 </ui:composition>
 
 7º- Depende de cada relatorio
