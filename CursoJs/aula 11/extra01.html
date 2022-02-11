@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nacionalidade</title>
+    <style>
+         body{
+            font: normal 15pt New times Romam;
+        }
+        h1{
+            font: italic 30pt Arial Black;
+        }
+        input{
+            background-color: black;
+            color: azure;
+            text-align: center;
+        }
+        input#nas{
+            width: 50px;
+        }
+        input#verifica{
+            font-weight: bold;
+        }
+        div{
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Você e Brasileiro?</h1>
+    Digite sua nascionalidade: <input type="text"  id="nas">
+    <input type="button" value="Confirmar" onclick="verifica()">
+    <div id = 'result'>
+
+    </div>
+
+    <script>
+        function verifica(){
+            var nasc = document.getElementById('nas');
+            var res = document.getElementById('result')
+            res.innerHTML = `Você é `
+            if(nasc.value === 'BR'){
+                res.innerHTML += 'Brasileiro'
+            }else{
+                res.innerHTML += 'Estrangeiro'
+            }
+            
+        }
+
+    </script>
+</body>
+</html>
